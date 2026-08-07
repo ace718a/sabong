@@ -115,6 +115,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://sabong.co.kr/daejeon/대덕구/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sabong.co.kr/daejeon/동구/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sabong.co.kr/daejeon/서구/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sabong.co.kr/daejeon/유성구/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sabong.co.kr/daejeon/중구/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://sabong.co.kr/incheon/</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
