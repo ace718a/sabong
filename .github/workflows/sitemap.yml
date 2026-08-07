@@ -1,0 +1,49 @@
+name: Update sitemap
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.html'
+      - '.github/scripts/generate_sitemap.py'
+      - '.github/workflows/sitemap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sitemap-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Generate sitemap
+        run: python .github/scripts/generate_sitemap.py
+
+      - name: Commit sitemap if changed
+        shell: bash
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "sitemap.xml is already up to date."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "chore: update sitemap [skip ci]"
+          git push
