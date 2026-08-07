@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://daegu.sabong.co.kr/</loc>
-  </url>
+  <url><loc>https://daegu.sabong.co.kr/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EC%A4%91%EA%B5%AC/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EB%8F%99%EA%B5%AC/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EC%84%9C%EA%B5%AC/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EB%82%A8%EA%B5%AC/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EB%B6%81%EA%B5%AC/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EC%88%98%EC%84%B1%EA%B5%AC/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EB%8B%AC%EC%84%9C%EA%B5%AC/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EB%8B%AC%EC%84%B1%EA%B5%B0/</loc></url>
+  <url><loc>https://daegu.sabong.co.kr/%EA%B5%B0%EC%9C%84%EA%B5%B0/</loc></url>
 </urlset>
