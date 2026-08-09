@@ -1,4 +1,4 @@
-﻿city_key,city_name,district_name,locality_name,level,page_type,status,path,canonical_url,source_file,created_date,batch_id
+city_key,city_name,district_name,locality_name,level,page_type,status,path,canonical_url,source_file,created_date,batch_id
 seoul,서울,,,city,city_home,published,seoul/,https://seoul.sabong.co.kr/,seoul/index.html,,baseline-20260809
 seoul,서울,강남구,,district,district,published,seoul/강남구/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/,seoul/강남구/index.html,,baseline-20260809
 seoul,서울,강동구,,district,district,published,seoul/강동구/,https://seoul.sabong.co.kr/%EA%B0%95%EB%8F%99%EA%B5%AC/,seoul/강동구/index.html,,baseline-20260809
@@ -153,3 +153,8 @@ yongin,용인,수지구,,district,district,published,yongin/수지구/,https://y
 goyang,고양,덕양구,,district,district,published,goyang/덕양구/,https://goyang.sabong.co.kr/%EB%8D%95%EC%96%91%EA%B5%AC/,goyang/덕양구/index.html,2026-08-09,goyang-district-001
 goyang,고양,일산동구,,district,district,published,goyang/일산동구/,https://goyang.sabong.co.kr/%EC%9D%BC%EC%82%B0%EB%8F%99%EA%B5%AC/,goyang/일산동구/index.html,2026-08-09,goyang-district-001
 goyang,고양,일산서구,,district,district,published,goyang/일산서구/,https://goyang.sabong.co.kr/%EC%9D%BC%EC%82%B0%EC%84%9C%EA%B5%AC/,goyang/일산서구/index.html,2026-08-09,goyang-district-001
+gwangju,광주,,,city,city_home,published,gwangju/,https://gwangju.sabong.co.kr/,gwangju/index.html,2026-08-09,gwangju-city-001
+ulsan,울산,,,city,city_home,published,ulsan/,https://ulsan.sabong.co.kr/,ulsan/index.html,2026-08-09,ulsan-city-001
+suwon,수원,,,city,city_home,published,suwon/,https://suwon.sabong.co.kr/,suwon/index.html,2026-08-09,suwon-city-001
+yongin,용인,,,city,city_home,published,yongin/,https://yongin.sabong.co.kr/,yongin/index.html,2026-08-09,yongin-city-001
+goyang,고양,,,city,city_home,published,goyang/,https://goyang.sabong.co.kr/,goyang/index.html,2026-08-09,goyang-city-001
