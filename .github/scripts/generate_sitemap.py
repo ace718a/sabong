@@ -16,6 +16,8 @@ EXCLUDED_FILES = {
 }
 
 # 향후 생성될 수 있는 공통 오류/임시 파일도 자동 제외합니다.
+SUBDOMAIN_DIRS = {"seoul", "busan", "daegu", "daejeon", "incheon"}
+
 EXCLUDED_NAMES = {
     "404.html",
     "403.html",
@@ -46,6 +48,8 @@ def html_files() -> list[Path]:
     for path in ROOT.rglob("*.html"):
         rel = path.relative_to(ROOT).as_posix()
         if rel.startswith(".github/"):
+            continue
+        if rel.split("/", 1)[0] in SUBDOMAIN_DIRS:
             continue
         if rel in EXCLUDED_FILES or path.name in EXCLUDED_NAMES:
             continue
