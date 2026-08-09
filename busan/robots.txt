@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://busan.sabong.co.kr/sitemap.xml
