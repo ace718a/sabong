@@ -69,3 +69,13 @@ incheon,인천,서구,,district,district,published,incheon/서구/,https://inche
 incheon,인천,연수구,,district,district,published,incheon/연수구/,https://incheon.sabong.co.kr/%EC%97%B0%EC%88%98%EA%B5%AC/,incheon/연수구/index.html,,baseline-20260809
 incheon,인천,옹진군,,district,district,published,incheon/옹진군/,https://incheon.sabong.co.kr/%EC%98%B9%EC%A7%84%EA%B5%B0/,incheon/옹진군/index.html,,baseline-20260809
 incheon,인천,중구,,district,district,published,incheon/중구/,https://incheon.sabong.co.kr/%EC%A4%91%EA%B5%AC/,incheon/중구/index.html,,baseline-20260809
+seoul,서울,강남구,압구정동,locality,locality,published,seoul/강남구/압구정동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EC%95%95%EA%B5%AC%EC%A0%95%EB%8F%99/,seoul/강남구/압구정동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,신사동,locality,locality,published,seoul/강남구/신사동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EC%8B%A0%EC%82%AC%EB%8F%99/,seoul/강남구/신사동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,청담동,locality,locality,published,seoul/강남구/청담동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EC%B2%AD%EB%8B%B4%EB%8F%99/,seoul/강남구/청담동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,논현동,locality,locality,published,seoul/강남구/논현동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EB%85%BC%ED%98%84%EB%8F%99/,seoul/강남구/논현동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,삼성동,locality,locality,published,seoul/강남구/삼성동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EC%82%BC%EC%84%B1%EB%8F%99/,seoul/강남구/삼성동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,역삼동,locality,locality,published,seoul/강남구/역삼동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EC%97%AD%EC%82%BC%EB%8F%99/,seoul/강남구/역삼동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,대치동,locality,locality,published,seoul/강남구/대치동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EB%8C%80%EC%B9%98%EB%8F%99/,seoul/강남구/대치동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,도곡동,locality,locality,published,seoul/강남구/도곡동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EB%8F%84%EA%B3%A1%EB%8F%99/,seoul/강남구/도곡동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,개포동,locality,locality,published,seoul/강남구/개포동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EA%B0%9C%ED%8F%AC%EB%8F%99/,seoul/강남구/개포동/index.html,2026-08-09,seoul-gangnam-locality-001
+seoul,서울,강남구,일원동,locality,locality,published,seoul/강남구/일원동/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/%EC%9D%BC%EC%9B%90%EB%8F%99/,seoul/강남구/일원동/index.html,2026-08-09,seoul-gangnam-locality-001
