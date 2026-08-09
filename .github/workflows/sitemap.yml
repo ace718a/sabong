@@ -31,19 +31,19 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Generate sitemap
+      - name: Generate root and subdomain sitemaps
         run: python .github/scripts/generate_sitemap.py
 
-      - name: Commit sitemap if changed
+      - name: Commit sitemaps if changed
         shell: bash
         run: |
-          if git diff --quiet -- sitemap.xml; then
-            echo "sitemap.xml is already up to date."
+          if git diff --quiet -- sitemap.xml */sitemap.xml; then
+            echo "All sitemap files are already up to date."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
-          git commit -m "chore: update sitemap [skip ci]"
+          git add sitemap.xml */sitemap.xml
+          git commit -m "chore: update sitemaps [skip ci]"
           git push
