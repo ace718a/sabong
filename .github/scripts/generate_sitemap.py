@@ -116,6 +116,8 @@ def subdomain_html_files(directory: Path) -> list[Path]:
 
 
 def encoded_path(relative_html: str) -> str:
+    # Normalize work-environment #Uxxxx display names before URL encoding.
+    relative_html = re.sub(r"#U([0-9A-Fa-f]{4})", lambda m: chr(int(m.group(1), 16)), relative_html)
     if relative_html == "index.html":
         return "/"
     if relative_html.endswith("/index.html"):
