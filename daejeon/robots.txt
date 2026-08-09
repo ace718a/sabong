@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://daejeon.sabong.co.kr/sitemap.xml
