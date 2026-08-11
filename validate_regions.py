@@ -5,11 +5,15 @@ from pathlib import Path
 from urllib.parse import urlparse, unquote
 from bs4 import BeautifulSoup
 from collections import Counter
+from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent
 MAP = ROOT / "maps" / "region_map.csv"
 CITIES = {"seoul":"서울","busan":"부산","daegu":"대구","daejeon":"대전","incheon":"인천","gwangju":"광주","ulsan":"울산","suwon":"수원","yongin":"용인","goyang":"고양"}
 ESCAPE_RE = re.compile(r"#U[0-9A-Fa-f]{4}|%u[0-9A-Fa-f]{4}|\\\\u[0-9A-Fa-f]{4}")
+FORBIDDEN_SPLIT_LOCALITIES = {"역삼1동","역삼2동","대저일동","대저이동","판암1동","판암2동","가양1동","가양2동","영종1동","영종2동","영종3동","운서1동","운서2동"}
+ALLOWED_HOSTS = {"schema.org", "cleanm.kr", "co10.kr", "www.sitemaps.org"}
+PLACEHOLDER_RE = re.compile(r"TODO|PLACEHOLDER|{{[^}]+}}|\[\[[^]]+]]|__+[A-Z][A-Z0-9_]*__+")
 
 errors, warnings = [], []
 
@@ -42,6 +46,7 @@ if not MAP.exists():
 else:
     with MAP.open(encoding="utf-8-sig", newline="") as f:
         rows=list(csv.DictReader(f))
+row_by_source={r["source_file"]:r for r in rows}
 
 # Map uniqueness and actual file correspondence.
 keys, canonicals, sources = [], [], []
@@ -52,6 +57,8 @@ for r in rows:
     if not p.exists(): err(f"map에는 있으나 HTML 없음: {r['source_file']}")
     if ESCAPE_RE.search(r["source_file"]) or ESCAPE_RE.search(r["path"]) or ESCAPE_RE.search(r["canonical_url"]):
         err(f"map escape 경로: {r['source_file']}")
+    if r["locality_name"] in FORBIDDEN_SPLIT_LOCALITIES:
+        err(f"대표 동명 대신 분할 행정동 사용: {r['source_file']}")
 
 for label, vals in [("지역키",keys),("canonical",canonicals),("source_file",sources)]:
     dup=[x for x,n in Counter(vals).items() if x and n>1]
@@ -75,7 +82,7 @@ mapped={logical_rel(fs_path(r["source_file"])) for r in rows}
 for p in actual:
     if logical_rel(p) not in mapped: err(f"HTML은 있으나 map에 없음: {logical_rel(p)}")
 
-titles=[]; descs=[]; heroes=[]; internal_link_sets=[]
+titles=[]; descs=[]; heroes=[]; internal_link_sets=[]; locality_intros=[]
 for p in actual:
     rel=logical_rel(p)
     raw=p.read_text(encoding="utf-8")
@@ -96,6 +103,11 @@ for p in actual:
     if canonical and ogurl != canonical: err(f"og:url != canonical: {rel}")
     if ESCAPE_RE.search(p.read_text(encoding="utf-8")):
         err(f"escape 문자열 발견: {rel}")
+    if PLACEHOLDER_RE.search(raw): err(f"placeholder/템플릿 토큰 발견: {rel}")
+    for host in re.findall(r"https?://([^/\s\"'<>]+)", raw, re.I):
+        host=host.lower().split(":",1)[0]
+        if host not in ALLOWED_HOSTS and not (host=="sabong.co.kr" or host.endswith(".sabong.co.kr")):
+            err(f"허용되지 않은 외부 도메인: {rel} -> {host}")
     for im in s.find_all("img"):
         if not im.has_attr("alt") or not im.get("alt","").strip(): err(f"ALT 누락: {rel}")
         if not im.get("width") or not im.get("height"): err(f"이미지 크기 속성 누락: {rel}")
@@ -122,7 +134,15 @@ for p in actual:
     box=s.select_one(".region-intro-box")
     if p.parent.name not in CITIES:
         if not box: err(f"region-intro-box 없음: {rel}")
-        elif len(box.get_text(" ",strip=True))<320: err(f"region-intro-box 320자 미만: {rel}")
+        else:
+            paragraphs=box.find_all("p",recursive=False)
+            body=" ".join(x.get_text(" ",strip=True) for x in paragraphs)
+            if len(body)<320: err(f"region-intro-box 본문 320자 미만: {rel}")
+            if len(body)>550: err(f"region-intro-box 본문 550자 초과({len(body)}자): {rel}")
+            sentences=[re.sub(r"\s+"," ",x.strip()) for x in re.split(r"(?<=[.!?])\s+|(?<=다\.)",body) if len(x.strip())>=20]
+            if any(n>1 for n in Counter(sentences).values()): err(f"region-intro-box 동일 문장 반복: {rel}")
+            row=row_by_source.get(rel)
+            if row and row["level"]=="locality": locality_intros.append((row,body))
     link_box=s.select_one(".region-link-box")
     if not link_box:
         err(f"지역 내부링크 박스 없음: {rel}")
@@ -142,6 +162,25 @@ for label, vals in [("title",titles),("description",descs),("Hero",heroes)]:
 if len(set(internal_link_sets)) != len(internal_link_sets):
     err(f"동일한 내부링크 10개 묶음 반복: {len(internal_link_sets)-len(set(internal_link_sets))}페이지")
 
+# Same-city locality pages: mask their own region names, then reject excessive
+# shared five-word runs. Adding repeated filler cannot be used to game this check.
+for ck in CITIES:
+    items=[x for x in locality_intros if x[0]["city_key"]==ck]
+    for i,(ra,ta) in enumerate(items):
+        for rb,tb in items[i+1:]:
+            normalized=[]
+            for row,text in ((ra,ta),(rb,tb)):
+                for name in (row["city_name"],row["district_name"],row["locality_name"]):
+                    if name: text=text.replace(name," [REGION] ")
+                normalized.append(re.sub(r"\s+"," ",text).strip())
+            sets=[]
+            for text in normalized:
+                words=text.split()
+                sets.append({tuple(words[n:n+5]) for n in range(max(0,len(words)-4))})
+            score=len(sets[0]&sets[1])/max(1,min(len(sets[0]),len(sets[1])))
+            if score>.45:
+                err(f"동일 도시 본문 유사도 45% 초과({score:.3%}): {ra['source_file']} <> {rb['source_file']}")
+
 # Parent hierarchy and city sitemap coverage.
 for r in rows:
     if r["level"]=="locality":
@@ -156,10 +195,15 @@ for ck in CITIES:
         err(f"{ck}/sitemap.xml 없음"); continue
     txt=sm.read_text(encoding="utf-8")
     if ESCAPE_RE.search(txt): err(f"{ck} sitemap escape 경로")
-    expected=[r["canonical_url"] for r in rows if r["city_key"]==ck]
-    for u in expected:
-        # sitemap may contain Unicode while canonical is percent encoded.
-        if u not in txt and unquote(u) not in txt: err(f"{ck} sitemap 누락: {u}")
+    expected={unquote(r["canonical_url"]) for r in rows if r["city_key"]==ck}
+    try:
+        tree=ET.fromstring(txt)
+        found=[unquote(x.text.strip()) for x in tree.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc") if x.text]
+        if len(found)!=len(set(found)): err(f"{ck} sitemap URL 중복")
+        if set(found)!=expected:
+            err(f"{ck} sitemap ↔ map 불일치(누락 {len(expected-set(found))}, 잔존 {len(set(found)-expected)})")
+    except ET.ParseError:
+        err(f"{ck} sitemap XML 파싱 오류")
 
 # Root sitemap must not publish city subdomain trees as sabong.co.kr/city/...
 root_sm=(ROOT/"sitemap.xml").read_text(encoding="utf-8") if (ROOT/"sitemap.xml").exists() else ""
