@@ -47,6 +47,7 @@ else:
     with MAP.open(encoding="utf-8-sig", newline="") as f:
         rows=list(csv.DictReader(f))
 row_by_source={r["source_file"]:r for r in rows}
+row_by_city_path={(r["city_key"],unquote(urlparse(r["canonical_url"]).path)):r for r in rows}
 
 # Map uniqueness and actual file correspondence.
 keys, canonicals, sources = [], [], []
@@ -166,6 +167,25 @@ for p in actual:
         parts=Path(rel).parts
         self_href="/" if len(parts)==2 else f"/{parts[1]}/" if len(parts)==3 else f"/{parts[1]}/{parts[2]}/"
         if self_href in link_hrefs: err(f"지역 내부링크 자기 자신 포함: {rel}")
+        source_row=row_by_source.get(rel)
+        if source_row:
+            targets=[row_by_city_path.get((source_row["city_key"],unquote(urlparse(href).path))) for href in link_hrefs]
+            if any(x is None for x in targets):
+                err(f"지역 내부링크 map 미등록 대상 포함: {rel}")
+            else:
+                city_rows=[r for r in rows if r["city_key"]==source_row["city_key"]]
+                if source_row["level"]=="city":
+                    available=sum(r["level"]=="district" for r in city_rows)
+                    selected=sum(r["level"]=="district" for r in targets)
+                    if selected!=min(10,available): err(f"시 페이지 구·군 링크 우선순위 오류: {rel}")
+                elif source_row["level"]=="district":
+                    available=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] for r in city_rows)
+                    selected=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] for r in targets)
+                    if selected!=min(10,available): err(f"구·군 페이지 하위 지역 링크 우선순위 오류: {rel}")
+                else:
+                    available=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] and r["source_file"]!=rel for r in city_rows)
+                    selected=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] for r in targets)
+                    if selected!=min(10,available): err(f"동·읍·면 페이지 같은 구 링크 우선순위 오류: {rel}")
         internal_link_sets.append(tuple(sorted(link_hrefs)))
     titles.append(title); descs.append(desc); heroes.append(hero)
     row=row_by_source.get(rel)
