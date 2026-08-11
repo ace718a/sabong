@@ -75,7 +75,7 @@ mapped={logical_rel(fs_path(r["source_file"])) for r in rows}
 for p in actual:
     if logical_rel(p) not in mapped: err(f"HTML은 있으나 map에 없음: {logical_rel(p)}")
 
-titles=[]; descs=[]; heroes=[]
+titles=[]; descs=[]; heroes=[]; internal_link_sets=[]
 for p in actual:
     rel=logical_rel(p)
     raw=p.read_text(encoding="utf-8")
@@ -123,11 +123,24 @@ for p in actual:
     if p.parent.name not in CITIES:
         if not box: err(f"region-intro-box 없음: {rel}")
         elif len(box.get_text(" ",strip=True))<320: err(f"region-intro-box 320자 미만: {rel}")
+    link_box=s.select_one(".region-link-box")
+    if not link_box:
+        err(f"지역 내부링크 박스 없음: {rel}")
+    else:
+        link_hrefs=[a.get("href","").strip() for a in link_box.find_all("a",href=True)]
+        if len(link_hrefs)!=10: err(f"지역 내부링크 10개 아님({len(link_hrefs)}): {rel}")
+        if len(set(link_hrefs))!=len(link_hrefs): err(f"지역 내부링크 중복: {rel}")
+        parts=Path(rel).parts
+        self_href="/" if len(parts)==2 else f"/{parts[1]}/" if len(parts)==3 else f"/{parts[1]}/{parts[2]}/"
+        if self_href in link_hrefs: err(f"지역 내부링크 자기 자신 포함: {rel}")
+        internal_link_sets.append(tuple(sorted(link_hrefs)))
     titles.append(title); descs.append(desc); heroes.append(hero)
 
 for label, vals in [("title",titles),("description",descs),("Hero",heroes)]:
     dup=[x for x,n in Counter(vals).items() if x and n>1]
     if dup: err(f"duplicate {label}: {len(dup)}개 그룹")
+if len(set(internal_link_sets)) != len(internal_link_sets):
+    err(f"동일한 내부링크 10개 묶음 반복: {len(internal_link_sets)-len(set(internal_link_sets))}페이지")
 
 # Parent hierarchy and city sitemap coverage.
 for r in rows:
