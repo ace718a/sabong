@@ -82,7 +82,7 @@ mapped={logical_rel(fs_path(r["source_file"])) for r in rows}
 for p in actual:
     if logical_rel(p) not in mapped: err(f"HTML은 있으나 map에 없음: {logical_rel(p)}")
 
-titles=[]; descs=[]; heroes=[]; internal_link_sets=[]; locality_intros=[]
+titles=[]; descs=[]; heroes=[]; internal_link_sets=[]; locality_intros=[]; metadata_rows=[]
 for p in actual:
     rel=logical_rel(p)
     raw=p.read_text(encoding="utf-8")
@@ -97,10 +97,18 @@ for p in actual:
     canonical=can.get("href","").strip() if can else ""
     og=s.find("meta",attrs={"property":"og:url"})
     ogurl=og.get("content","").strip() if og else ""
+    ogtitle=(s.find("meta",attrs={"property":"og:title"}) or {}).get("content","").strip()
+    ogdesc=(s.find("meta",attrs={"property":"og:description"}) or {}).get("content","").strip()
+    twtitle=(s.find("meta",attrs={"name":"twitter:title"}) or {}).get("content","").strip()
+    twdesc=(s.find("meta",attrs={"name":"twitter:description"}) or {}).get("content","").strip()
     if not title: err(f"title 없음: {rel}")
     if not desc: err(f"description 없음: {rel}")
     if not canonical: err(f"canonical 없음: {rel}")
     if canonical and ogurl != canonical: err(f"og:url != canonical: {rel}")
+    if ogtitle!=title or twtitle!=title: err(f"TITLE ↔ OG/Twitter 불일치: {rel}")
+    if ogdesc!=desc or twdesc!=desc: err(f"description ↔ OG/Twitter 불일치: {rel}")
+    if not 20<=len(title)<=65: err(f"TITLE 권장 범위 이탈({len(title)}자): {rel}")
+    if not 70<=len(desc)<=200: err(f"description 권장 범위 이탈({len(desc)}자): {rel}")
     if ESCAPE_RE.search(p.read_text(encoding="utf-8")):
         err(f"escape 문자열 발견: {rel}")
     if PLACEHOLDER_RE.search(raw): err(f"placeholder/템플릿 토큰 발견: {rel}")
@@ -123,9 +131,14 @@ for p in actual:
         target=(ROOT/p.relative_to(ROOT).parts[0]/path.lstrip("/")) if path.startswith("/") else (p.parent/path)
         if path.endswith("/"): target=target/"index.html"
         if not target.exists(): err(f"내부링크 대상 없음: {rel} -> {href}")
+    webpage_schema=None
     for sc in s.find_all("script",attrs={"type":"application/ld+json"}):
-        try: json.loads(sc.string or sc.get_text())
+        try:
+            parsed=json.loads(sc.string or sc.get_text())
+            if parsed.get("@type") in {"WebPage","WebSite"}: webpage_schema=parsed
         except Exception: err(f"JSON-LD 파싱 오류: {rel}")
+    if not webpage_schema or webpage_schema.get("name")!=title or webpage_schema.get("description")!=desc:
+        err(f"TITLE/description ↔ WebPage JSON-LD 불일치: {rel}")
     h=s.find("h1"); hp=h.find_next("p") if h else None
     hero=hp.get_text(" ",strip=True) if hp else ""
     if len(hero)<50: err(f"Hero 너무 짧음: {rel}")
@@ -155,12 +168,29 @@ for p in actual:
         if self_href in link_hrefs: err(f"지역 내부링크 자기 자신 포함: {rel}")
         internal_link_sets.append(tuple(sorted(link_hrefs)))
     titles.append(title); descs.append(desc); heroes.append(hero)
+    row=row_by_source.get(rel)
+    if row: metadata_rows.append((row,title,desc))
 
 for label, vals in [("title",titles),("description",descs),("Hero",heroes)]:
     dup=[x for x,n in Counter(vals).items() if x and n>1]
     if dup: err(f"duplicate {label}: {len(dup)}개 그룹")
 if len(set(internal_link_sets)) != len(internal_link_sets):
     err(f"동일한 내부링크 10개 묶음 반복: {len(internal_link_sets)-len(set(internal_link_sets))}페이지")
+
+# Short metadata naturally shares service keywords, but a large group that only
+# changes the region name is rejected. This catches mass city/district/locality
+# cloning without forcing every concise title to use unnatural synonyms.
+for level in ("city","district","locality"):
+    level_items=[x for x in metadata_rows if x[0]["level"]==level]
+    for label,index,limit in (("TITLE",1,3),("description",2,2)):
+        masked=[]
+        for row,title,desc in level_items:
+            text=(title,desc)[index-1]
+            for name in (row["city_name"],row["district_name"],row["locality_name"]):
+                if name: text=text.replace(name,"[지역]")
+            masked.append(re.sub(r"\s+"," ",text).strip())
+        largest=max(Counter(masked).values(),default=0)
+        if largest>limit: err(f"{level} 지역명 치환형 {label} 반복 과다(최대 {largest}개)")
 
 # Same-city locality pages: mask their own region names, then reject excessive
 # shared five-word runs. Adding repeated filler cannot be used to game this check.
