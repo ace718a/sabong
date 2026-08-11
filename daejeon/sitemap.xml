@@ -3,7 +3,7 @@
   <url>
     <loc>https://daejeon.sabong.co.kr/</loc>
     <lastmod>2026-08-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
@@ -14,24 +14,6 @@
   </url>
   <url>
     <loc>https://daejeon.sabong.co.kr/%EB%8F%99%EA%B5%AC/</loc>
-    <lastmod>2026-08-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/</loc>
-    <lastmod>2026-08-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://daejeon.sabong.co.kr/%EC%9C%A0%EC%84%B1%EA%B5%AC/</loc>
-    <lastmod>2026-08-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://daejeon.sabong.co.kr/%EC%A4%91%EA%B5%AC/</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -121,31 +103,13 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EA%B0%80%EC%9E%A5%EB%8F%99/</loc>
-    <lastmod>2026-08-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EB%82%B4%EB%8F%99/</loc>
-    <lastmod>2026-08-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EB%8F%84%EB%A7%88%EB%8F%99/</loc>
-    <lastmod>2026-08-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EB%B3%80%EB%8F%99/</loc>
-    <lastmod>2026-08-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EC%9A%A9%EB%AC%B8%EB%8F%99/</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -163,7 +127,31 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EB%82%B4%EB%8F%99/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EB%8F%84%EB%A7%88%EB%8F%99/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EB%91%94%EC%82%B0%EB%8F%99/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EB%B3%80%EB%8F%99/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%EC%9A%A9%EB%AC%B8%EB%8F%99/</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -176,6 +164,12 @@
   </url>
   <url>
     <loc>https://daejeon.sabong.co.kr/%EC%84%9C%EA%B5%AC/%ED%83%84%EB%B0%A9%EB%8F%99/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daejeon.sabong.co.kr/%EC%9C%A0%EC%84%B1%EA%B5%AC/</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -206,6 +200,12 @@
   </url>
   <url>
     <loc>https://daejeon.sabong.co.kr/%EC%9C%A0%EC%84%B1%EA%B5%AC/%EC%9E%A5%EB%8C%80%EB%8F%99/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daejeon.sabong.co.kr/%EC%A4%91%EA%B5%AC/</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
