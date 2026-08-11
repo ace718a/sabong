@@ -78,7 +78,10 @@ for p in actual:
 titles=[]; descs=[]; heroes=[]
 for p in actual:
     rel=logical_rel(p)
-    s=soup(p)
+    raw=p.read_text(encoding="utf-8")
+    s=BeautifulSoup(raw, "html.parser")
+    if len(re.findall(r"<!doctype\s+html\s*>", raw, re.I)) != 1: err(f"DOCTYPE 개수 오류: {rel}")
+    if ".png" in raw.lower(): err(f"PNG 참조 잔존: {rel}")
     if len(s.find_all("h1")) != 1: err(f"H1 개수 오류: {rel}")
     title=s.title.get_text(" ",strip=True) if s.title else ""
     md=s.find("meta",attrs={"name":"description"})
@@ -95,6 +98,19 @@ for p in actual:
         err(f"escape 문자열 발견: {rel}")
     for im in s.find_all("img"):
         if not im.has_attr("alt") or not im.get("alt","").strip(): err(f"ALT 누락: {rel}")
+        if not im.get("width") or not im.get("height"): err(f"이미지 크기 속성 누락: {rel}")
+        if im.get("loading") != "lazy": err(f"이미지 lazy loading 누락: {rel}")
+        src=im.get("src","")
+        if src and not src.startswith(("http://","https://","//","data:")):
+            target=(ROOT/p.relative_to(ROOT).parts[0]/unquote(urlparse(src).path).lstrip("/")) if src.startswith("/") else (p.parent/unquote(urlparse(src).path))
+            if not target.exists(): err(f"이미지 파일 없음: {rel} -> {src}")
+    for a in s.find_all("a", href=True):
+        href=a.get("href","")
+        if not href or href.startswith(("#","http://","https://","//","mailto:","tel:","javascript:")): continue
+        path=unquote(urlparse(href).path)
+        target=(ROOT/p.relative_to(ROOT).parts[0]/path.lstrip("/")) if path.startswith("/") else (p.parent/path)
+        if path.endswith("/"): target=target/"index.html"
+        if not target.exists(): err(f"내부링크 대상 없음: {rel} -> {href}")
     for sc in s.find_all("script",attrs={"type":"application/ld+json"}):
         try: json.loads(sc.string or sc.get_text())
         except Exception: err(f"JSON-LD 파싱 오류: {rel}")
