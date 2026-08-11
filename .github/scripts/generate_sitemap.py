@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import csv
 import re
 import subprocess
 from datetime import date
@@ -10,6 +11,7 @@ from urllib.parse import quote, urlparse
 
 BASE_URL = "https://sabong.co.kr"
 ROOT = Path(__file__).resolve().parents[2]
+REGION_MAP = ROOT / "maps" / "region_map.csv"
 
 EXCLUDED_FILES = {"about.html", "privacy.html"}
 EXCLUDED_NAMES = {"404.html", "403.html", "500.html"}
@@ -158,12 +160,33 @@ def main() -> None:
     (ROOT / "sitemap.xml").write_text(build_xml(root_items), encoding="utf-8")
     print(f"Generated sitemap.xml with {len(root_items)} URL(s).")
 
+    with REGION_MAP.open(encoding="utf-8-sig", newline="") as f:
+        rows = [row for row in csv.DictReader(f) if row["status"] == "published"]
+
+    seen_urls: set[str] = set()
+    seen_sources: set[str] = set()
+    for row in rows:
+        source = row["source_file"]
+        canonical = row["canonical_url"]
+        if source in seen_sources or canonical in seen_urls:
+            raise RuntimeError(f"Duplicate region_map entry: {source} / {canonical}")
+        seen_sources.add(source)
+        seen_urls.add(canonical)
+        path = ROOT / source
+        if not path.is_file():
+            raise FileNotFoundError(f"Mapped HTML missing: {source}")
+        actual = canonical_url(path)
+        if actual != canonical:
+            raise RuntimeError(f"Canonical mismatch: {source}: {actual} != {canonical}")
+
     for folder, base_url in subdomains.items():
         directory = ROOT / folder
         items: list[tuple[Path, str, bool]] = []
-        for path in subdomain_html_files(directory):
-            rel = path.relative_to(directory).as_posix()
-            items.append((path, base_url + encoded_path(rel), rel == "index.html"))
+        for row in rows:
+            if row["city_key"] != folder:
+                continue
+            path = ROOT / row["source_file"]
+            items.append((path, row["canonical_url"], row["level"] == "city"))
 
         (directory / "sitemap.xml").write_text(build_xml(items), encoding="utf-8")
         print(
