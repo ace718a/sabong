@@ -83,11 +83,32 @@ mapped={logical_rel(fs_path(r["source_file"])) for r in rows}
 for p in actual:
     if logical_rel(p) not in mapped: err(f"HTML은 있으나 map에 없음: {logical_rel(p)}")
 
+# Include the root landing page as well as every managed regional page in the
+# responsive hero invariant. Supporting pages without a hero are not targets.
+hero_layout_pages=[]
+for hero_path in ROOT.rglob("*.html"):
+    hero_raw=hero_path.read_text(encoding="utf-8")
+    if ".hero-copy{" not in hero_raw:
+        continue
+    hero_layout_pages.append(hero_path)
+    hero_rel=logical_rel(hero_path)
+    if "width:min(760px,58%)" in hero_raw:
+        err(f"responsive hero width collapse rule remains: {hero_rel}")
+    if ".hero-copy{width:58%" not in hero_raw:
+        err(f"responsive hero width rule missing: {hero_rel}")
+
 titles=[]; descs=[]; heroes=[]; internal_link_sets=[]; locality_intros=[]; metadata_rows=[]
 for p in actual:
     rel=logical_rel(p)
     raw=p.read_text(encoding="utf-8")
     s=BeautifulSoup(raw, "html.parser")
+    # A fixed 760px hero box combined with viewport-growing left padding
+    # collapses the usable copy width on QHD/4K screens. Keep the copy box
+    # proportional so the centered gutter and text area grow together.
+    if "width:min(760px,58%)" in raw:
+        err(f"responsive hero width collapse rule remains: {rel}")
+    if ".hero-copy{width:58%" not in raw:
+        err(f"responsive hero width rule missing: {rel}")
     if len(re.findall(r"<!doctype\s+html\s*>", raw, re.I)) != 1: err(f"DOCTYPE 개수 오류: {rel}")
     if ".png" in raw.lower(): err(f"PNG 참조 잔존: {rel}")
     if len(s.find_all("h1")) != 1: err(f"H1 개수 오류: {rel}")
@@ -265,6 +286,7 @@ fs_escape=[str(p.relative_to(ROOT)) for p in ROOT.rglob("*") if ESCAPE_RE.search
 if fs_escape: warn(f"작업환경 파일명 escape 표시 {len(fs_escape)}건 — 원본/최종 ZIP central directory로 최종 판정")
 
 print(f"Managed pages: {len(actual)} / map rows: {len(rows)}")
+print(f"Responsive hero pages: {len(hero_layout_pages)}")
 print(f"Warnings: {len(warnings)}")
 for x in warnings: print("WARN:",x)
 if errors:
