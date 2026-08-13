@@ -8,6 +8,7 @@ import subprocess
 from datetime import date
 from pathlib import Path
 from urllib.parse import quote, urlparse
+from xml.etree import ElementTree as ET
 
 BASE_URL = "https://sabong.co.kr"
 ROOT = Path(__file__).resolve().parents[2]
@@ -44,6 +45,57 @@ def git_lastmod(relative_path: str) -> str:
     except (subprocess.CalledProcessError, FileNotFoundError):
         pass
     return date.today().isoformat()
+
+
+def existing_lastmods(sitemap_path: Path) -> dict[str, str]:
+    """Read the dates already published instead of resetting every URL."""
+    if not sitemap_path.is_file():
+        return {}
+    try:
+        root = ET.fromstring(sitemap_path.read_text(encoding="utf-8"))
+    except (ET.ParseError, OSError, UnicodeDecodeError):
+        return {}
+    namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    result: dict[str, str] = {}
+    for item in root.findall("sm:url", namespace):
+        loc = item.findtext("sm:loc", default="", namespaces=namespace).strip()
+        lastmod = item.findtext("sm:lastmod", default="", namespaces=namespace).strip()
+        if loc and re.fullmatch(r"\d{4}-\d{2}-\d{2}", lastmod):
+            result[loc] = lastmod
+    return result
+
+
+def previous_file(relative_path: str) -> str | None:
+    """Return the file before the current commit when Git history is available."""
+    try:
+        result = subprocess.run(
+            ["git", "show", f"HEAD^:{relative_path}"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+        return result.stdout
+    except (subprocess.CalledProcessError, FileNotFoundError, UnicodeDecodeError):
+        return None
+
+
+def without_presentation(text: str) -> str:
+    """Ignore inline CSS when deciding whether search-visible content changed."""
+    return re.sub(r"<style\b[^>]*>.*?</style>", "", text, flags=re.IGNORECASE | re.DOTALL)
+
+
+def content_lastmod(path: Path, url: str, old_dates: dict[str, str]) -> str:
+    """Preserve lastmod for presentation-only edits; update real content edits."""
+    rel = path.relative_to(ROOT).as_posix()
+    old_date = old_dates.get(url)
+    previous = previous_file(rel)
+    if old_date and previous is not None:
+        current = path.read_text(encoding="utf-8")
+        if without_presentation(current) == without_presentation(previous):
+            return old_date
+    return git_lastmod(rel)
 
 
 def canonical_url(index_file: Path) -> str | None:
@@ -127,7 +179,7 @@ def encoded_path(relative_html: str) -> str:
     return "/" + quote(relative_html, safe="/~-._")
 
 
-def build_xml(items: list[tuple[Path, str, bool]]) -> str:
+def build_xml(items: list[tuple[Path, str, bool]], old_dates: dict[str, str]) -> str:
     entries: list[str] = []
 
     for path, url, is_site_root in items:
@@ -135,7 +187,7 @@ def build_xml(items: list[tuple[Path, str, bool]]) -> str:
         entries.append(
             "  <url>\n"
             f"    <loc>{html.escape(url)}</loc>\n"
-            f"    <lastmod>{git_lastmod(rel)}</lastmod>\n"
+            f"    <lastmod>{content_lastmod(path, url, old_dates)}</lastmod>\n"
             f"    <changefreq>{'weekly' if is_site_root else 'monthly'}</changefreq>\n"
             f"    <priority>{'1.0' if is_site_root else '0.7'}</priority>\n"
             "  </url>"
@@ -157,7 +209,9 @@ def main() -> None:
         rel = path.relative_to(ROOT).as_posix()
         root_items.append((path, BASE_URL + encoded_path(rel), rel == "index.html"))
 
-    (ROOT / "sitemap.xml").write_text(build_xml(root_items), encoding="utf-8")
+    root_sitemap = ROOT / "sitemap.xml"
+    root_dates = existing_lastmods(root_sitemap)
+    root_sitemap.write_text(build_xml(root_items, root_dates), encoding="utf-8")
     print(f"Generated sitemap.xml with {len(root_items)} URL(s).")
 
     with REGION_MAP.open(encoding="utf-8-sig", newline="") as f:
@@ -188,7 +242,9 @@ def main() -> None:
             path = ROOT / row["source_file"]
             items.append((path, row["canonical_url"], row["level"] == "city"))
 
-        (directory / "sitemap.xml").write_text(build_xml(items), encoding="utf-8")
+        city_sitemap = directory / "sitemap.xml"
+        city_dates = existing_lastmods(city_sitemap)
+        city_sitemap.write_text(build_xml(items, city_dates), encoding="utf-8")
         print(
             f"Generated {folder}/sitemap.xml with {len(items)} URL(s) "
             f"for {base_url}."
