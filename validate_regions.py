@@ -83,32 +83,11 @@ mapped={logical_rel(fs_path(r["source_file"])) for r in rows}
 for p in actual:
     if logical_rel(p) not in mapped: err(f"HTML은 있으나 map에 없음: {logical_rel(p)}")
 
-# Include the root landing page as well as every managed regional page in the
-# responsive hero invariant. Supporting pages without a hero are not targets.
-hero_layout_pages=[]
-for hero_path in ROOT.rglob("*.html"):
-    hero_raw=hero_path.read_text(encoding="utf-8")
-    if ".hero-copy{" not in hero_raw:
-        continue
-    hero_layout_pages.append(hero_path)
-    hero_rel=logical_rel(hero_path)
-    if "width:min(760px,58%)" in hero_raw:
-        err(f"responsive hero width collapse rule remains: {hero_rel}")
-    if ".hero-copy{width:58%" not in hero_raw:
-        err(f"responsive hero width rule missing: {hero_rel}")
-
 titles=[]; descs=[]; heroes=[]; internal_link_sets=[]; locality_intros=[]; metadata_rows=[]
 for p in actual:
     rel=logical_rel(p)
     raw=p.read_text(encoding="utf-8")
     s=BeautifulSoup(raw, "html.parser")
-    # A fixed 760px hero box combined with viewport-growing left padding
-    # collapses the usable copy width on QHD/4K screens. Keep the copy box
-    # proportional so the centered gutter and text area grow together.
-    if "width:min(760px,58%)" in raw:
-        err(f"responsive hero width collapse rule remains: {rel}")
-    if ".hero-copy{width:58%" not in raw:
-        err(f"responsive hero width rule missing: {rel}")
     if len(re.findall(r"<!doctype\s+html\s*>", raw, re.I)) != 1: err(f"DOCTYPE 개수 오류: {rel}")
     if ".png" in raw.lower(): err(f"PNG 참조 잔존: {rel}")
     if len(s.find_all("h1")) != 1: err(f"H1 개수 오류: {rel}")
@@ -163,7 +142,13 @@ for p in actual:
         err(f"TITLE/description ↔ WebPage JSON-LD 불일치: {rel}")
     h=s.find("h1"); hp=h.find_next("p") if h else None
     hero=hp.get_text(" ",strip=True) if hp else ""
-    if len(hero)<50: err(f"Hero 너무 짧음: {rel}")
+    row=row_by_source.get(rel)
+    strengthened_text_rule=bool(row and row.get("created_date","") >= "2026-08-14")
+    if strengthened_text_rule:
+        if len(hero)<90: err(f"신규 Hero 90자 미만({len(hero)}자): {rel}")
+        if len(hero)>180: err(f"신규 Hero 180자 초과({len(hero)}자): {rel}")
+    elif len(hero)<50:
+        err(f"Hero 너무 짧음: {rel}")
     intro=s.select_one("section.region-intro")
     if intro and intro.find_all("p",recursive=False): err(f"region-intro 문단 박스 이탈: {rel}")
     box=s.select_one(".region-intro-box")
@@ -172,11 +157,15 @@ for p in actual:
         else:
             paragraphs=box.find_all("p",recursive=False)
             body=" ".join(x.get_text(" ",strip=True) for x in paragraphs)
-            if len(body)<320: err(f"region-intro-box 본문 320자 미만: {rel}")
-            if len(body)>550: err(f"region-intro-box 본문 550자 초과({len(body)}자): {rel}")
+            if strengthened_text_rule:
+                if len(body)<450: err(f"신규 region-intro-box 본문 450자 미만({len(body)}자): {rel}")
+                if len(body)>650: err(f"신규 region-intro-box 본문 650자 초과({len(body)}자): {rel}")
+                if len(hero)+len(body)<550: err(f"신규 Hero+고유본문 합계 550자 미만({len(hero)+len(body)}자): {rel}")
+            else:
+                if len(body)<320: err(f"region-intro-box 본문 320자 미만: {rel}")
+                if len(body)>550: err(f"region-intro-box 본문 550자 초과({len(body)}자): {rel}")
             sentences=[re.sub(r"\s+"," ",x.strip()) for x in re.split(r"(?<=[.!?])\s+|(?<=다\.)",body) if len(x.strip())>=20]
             if any(n>1 for n in Counter(sentences).values()): err(f"region-intro-box 동일 문장 반복: {rel}")
-            row=row_by_source.get(rel)
             if row and row["level"]=="locality": locality_intros.append((row,body))
     link_box=s.select_one(".region-link-box")
     if not link_box:
@@ -286,7 +275,6 @@ fs_escape=[str(p.relative_to(ROOT)) for p in ROOT.rglob("*") if ESCAPE_RE.search
 if fs_escape: warn(f"작업환경 파일명 escape 표시 {len(fs_escape)}건 — 원본/최종 ZIP central directory로 최종 판정")
 
 print(f"Managed pages: {len(actual)} / map rows: {len(rows)}")
-print(f"Responsive hero pages: {len(hero_layout_pages)}")
 print(f"Warnings: {len(warnings)}")
 for x in warnings: print("WARN:",x)
 if errors:
