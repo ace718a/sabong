@@ -294,4 +294,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://busan.sabong.co.kr/%EC%82%AC%ED%95%98%EA%B5%AC/%EA%B4%B4%EC%A0%95%EB%8F%99/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://busan.sabong.co.kr/%EC%82%AC%ED%95%98%EA%B5%AC/%EB%8B%B9%EB%A6%AC%EB%8F%99/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://busan.sabong.co.kr/%EC%82%AC%ED%95%98%EA%B5%AC/%ED%95%98%EB%8B%A8%EB%8F%99/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://busan.sabong.co.kr/%EC%82%AC%ED%95%98%EA%B5%AC/%EC%8B%A0%ED%8F%89%EB%8F%99/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://busan.sabong.co.kr/%EC%82%AC%ED%95%98%EA%B5%AC/%EC%9E%A5%EB%A6%BC%EB%8F%99/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
