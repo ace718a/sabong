@@ -87,15 +87,14 @@ def without_presentation(text: str) -> str:
 
 
 def content_lastmod(path: Path, url: str, old_dates: dict[str, str]) -> str:
-    """Preserve lastmod for presentation-only edits; update real content edits."""
-    rel = path.relative_to(ROOT).as_posix()
+    """Preserve published URL dates; assign a date only to newly found URLs."""
     old_date = old_dates.get(url)
-    previous = previous_file(rel)
-    if old_date and previous is not None:
-        current = path.read_text(encoding="utf-8")
-        if without_presentation(current) == without_presentation(previous):
-            return old_date
-    return git_lastmod(rel)
+    # Git diff can compare against an intermediate commit when upload packages
+    # are applied separately. Never infer a lastmod change from that history.
+    # Core-content edits must update the URL date explicitly in that task.
+    if old_date:
+        return old_date
+    return git_lastmod(path.relative_to(ROOT).as_posix())
 
 
 def canonical_url(index_file: Path) -> str | None:
