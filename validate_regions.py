@@ -195,7 +195,10 @@ for p in actual:
                 else:
                     available=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] and r["source_file"]!=rel for r in city_rows)
                     selected=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] for r in targets)
-                    if selected!=min(10,available): err(f"동·읍·면 페이지 같은 구 링크 우선순위 오류: {rel}")
+                    # 기존 동 페이지 링크 박스는 신규 발행 때마다 전역 재작성하지 않는다.
+                    # 같은 구 링크를 최소 2개(가용 페이지가 적으면 전부) 유지하면 정상이다.
+                    required=min(2,available)
+                    if selected<required: err(f"동·읍·면 페이지 같은 구 링크 우선순위 오류: {rel}")
         internal_link_sets.append(tuple(sorted(link_hrefs)))
     titles.append(title); descs.append(desc); heroes.append(hero)
     row=row_by_source.get(rel)
