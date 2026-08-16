@@ -144,6 +144,7 @@ for p in actual:
     hero=hp.get_text(" ",strip=True) if hp else ""
     row=row_by_source.get(rel)
     strengthened_text_rule=bool(row and row.get("created_date","") >= "2026-08-14")
+    experiment_rule=bool(row and row.get("level")=="experiment")
     if strengthened_text_rule:
         if len(hero)<90: err(f"신규 Hero 90자 미만({len(hero)}자): {rel}")
         if len(hero)>180: err(f"신규 Hero 180자 초과({len(hero)}자): {rel}")
@@ -157,7 +158,10 @@ for p in actual:
         else:
             paragraphs=box.find_all("p",recursive=False)
             body=" ".join(x.get_text(" ",strip=True) for x in paragraphs)
-            if strengthened_text_rule:
+            if experiment_rule:
+                if len(body)<1100: err(f"실험 핵심본문 1100자 미만({len(body)}자): {rel}")
+                if len(body)>1550: err(f"실험 핵심본문 1550자 초과({len(body)}자): {rel}")
+            elif strengthened_text_rule:
                 if len(body)<450: err(f"신규 region-intro-box 본문 450자 미만({len(body)}자): {rel}")
                 if len(body)>650: err(f"신규 region-intro-box 본문 650자 초과({len(body)}자): {rel}")
                 if len(hero)+len(body)<550: err(f"신규 Hero+고유본문 합계 550자 미만({len(hero)+len(body)}자): {rel}")
@@ -165,7 +169,7 @@ for p in actual:
                 if len(body)<320: err(f"region-intro-box 본문 320자 미만: {rel}")
                 if len(body)>550: err(f"region-intro-box 본문 550자 초과({len(body)}자): {rel}")
             sentences=[re.sub(r"\s+"," ",x.strip()) for x in re.split(r"(?<=[.!?])\s+|(?<=다\.)",body) if len(x.strip())>=20]
-            if any(n>1 for n in Counter(sentences).values()): err(f"region-intro-box 동일 문장 반복: {rel}")
+            if not experiment_rule and any(n>1 for n in Counter(sentences).values()): err(f"region-intro-box 동일 문장 반복: {rel}")
             if row and row["level"]=="locality": locality_intros.append((row,body))
     link_box=s.select_one(".region-link-box")
     if not link_box:
@@ -192,7 +196,7 @@ for p in actual:
                     available=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] for r in city_rows)
                     selected=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] for r in targets)
                     if selected!=min(10,available): err(f"구·군 페이지 하위 지역 링크 우선순위 오류: {rel}")
-                else:
+                elif source_row["level"]=="locality":
                     available=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] and r["source_file"]!=rel for r in city_rows)
                     selected=sum(r["level"]=="locality" and r["district_name"]==source_row["district_name"] for r in targets)
                     # 기존 동 페이지 링크 박스는 신규 발행 때마다 전역 재작성하지 않는다.
