@@ -246,4 +246,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://suwon.sabong.co.kr/%ED%8C%94%EB%8B%AC%EA%B5%AC/%EB%B6%81%EC%88%98%EB%8F%99/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suwon.sabong.co.kr/%ED%8C%94%EB%8B%AC%EA%B5%AC/%EC%8B%A0%ED%92%8D%EB%8F%99/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suwon.sabong.co.kr/%ED%8C%94%EB%8B%AC%EA%B5%AC/%EC%9E%A5%EC%95%88%EB%8F%99/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

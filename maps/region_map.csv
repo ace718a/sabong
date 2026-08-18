@@ -1,4 +1,4 @@
-﻿city_key,city_name,district_name,locality_name,level,page_type,status,path,canonical_url,source_file,created_date,batch_id
+city_key,city_name,district_name,locality_name,level,page_type,status,path,canonical_url,source_file,created_date,batch_id
 seoul,서울,,,city,city_home,published,seoul/,https://seoul.sabong.co.kr/,seoul/index.html,,baseline-20260809
 seoul,서울,강남구,,district,district,published,seoul/강남구/,https://seoul.sabong.co.kr/%EA%B0%95%EB%82%A8%EA%B5%AC/,seoul/강남구/index.html,,baseline-20260809
 seoul,서울,강동구,,district,district,published,seoul/강동구/,https://seoul.sabong.co.kr/%EA%B0%95%EB%8F%99%EA%B5%AC/,seoul/강동구/index.html,,baseline-20260809
@@ -505,3 +505,33 @@ ulsan,서울,서초구,서초동 공간별 청소범위,experiment,seo_experimen
 suwon,서울,서초구,서초동 입주일정 청소순서,experiment,seo_experiment,published,suwon/서초동/입주일정-청소순서/,https://suwon.sabong.co.kr/%EC%84%9C%EC%B4%88%EB%8F%99/입주일정-청소순서/,suwon/서초동/입주일정-청소순서/index.html,2026-08-16,20260816-seocho-multihost-test
 yongin,서울,서초구,서초동 아이 가정 입주청소,experiment,seo_experiment,published,yongin/서초동/아이-가정-입주청소/,https://yongin.sabong.co.kr/%EC%84%9C%EC%B4%88%EB%8F%99/아이-가정-입주청소/,yongin/서초동/아이-가정-입주청소/index.html,2026-08-16,20260816-seocho-multihost-test
 goyang,서울,서초구,서초동 반려동물 이사청소,experiment,seo_experiment,published,goyang/서초동/반려동물-이사청소/,https://goyang.sabong.co.kr/%EC%84%9C%EC%B4%88%EB%8F%99/반려동물-이사청소/,goyang/서초동/반려동물-이사청소/index.html,2026-08-16,20260816-seocho-multihost-test
+seoul,서울,종로구,청운동,locality,locality,published,/종로구/청운동/,https://seoul.sabong.co.kr/%EC%A2%85%EB%A1%9C%EA%B5%AC/%EC%B2%AD%EC%9A%B4%EB%8F%99/,seoul/종로구/청운동/index.html,2026-08-18,20260818-add30-seoul
+seoul,서울,종로구,신교동,locality,locality,published,/종로구/신교동/,https://seoul.sabong.co.kr/%EC%A2%85%EB%A1%9C%EA%B5%AC/%EC%8B%A0%EA%B5%90%EB%8F%99/,seoul/종로구/신교동/index.html,2026-08-18,20260818-add30-seoul
+seoul,서울,종로구,궁정동,locality,locality,published,/종로구/궁정동/,https://seoul.sabong.co.kr/%EC%A2%85%EB%A1%9C%EA%B5%AC/%EA%B6%81%EC%A0%95%EB%8F%99/,seoul/종로구/궁정동/index.html,2026-08-18,20260818-add30-seoul
+busan,부산,영도구,남항동,locality,locality,published,/영도구/남항동/,https://busan.sabong.co.kr/%EC%98%81%EB%8F%84%EA%B5%AC/%EB%82%A8%ED%95%AD%EB%8F%99/,busan/영도구/남항동/index.html,2026-08-18,20260818-add30-busan
+busan,부산,영도구,영선동,locality,locality,published,/영도구/영선동/,https://busan.sabong.co.kr/%EC%98%81%EB%8F%84%EA%B5%AC/%EC%98%81%EC%84%A0%EB%8F%99/,busan/영도구/영선동/index.html,2026-08-18,20260818-add30-busan
+busan,부산,영도구,신선동,locality,locality,published,/영도구/신선동/,https://busan.sabong.co.kr/%EC%98%81%EB%8F%84%EA%B5%AC/%EC%8B%A0%EC%84%A0%EB%8F%99/,busan/영도구/신선동/index.html,2026-08-18,20260818-add30-busan
+daegu,대구,중구,봉산동,locality,locality,published,/중구/봉산동/,https://daegu.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EB%B4%89%EC%82%B0%EB%8F%99/,daegu/중구/봉산동/index.html,2026-08-18,20260818-add30-daegu
+daegu,대구,중구,동문동,locality,locality,published,/중구/동문동/,https://daegu.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EB%8F%99%EB%AC%B8%EB%8F%99/,daegu/중구/동문동/index.html,2026-08-18,20260818-add30-daegu
+daegu,대구,중구,문화동,locality,locality,published,/중구/문화동/,https://daegu.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EB%AC%B8%ED%99%94%EB%8F%99/,daegu/중구/문화동/index.html,2026-08-18,20260818-add30-daegu
+daejeon,대전,대덕구,오정동,locality,locality,published,/대덕구/오정동/,https://daejeon.sabong.co.kr/%EB%8C%80%EB%8D%95%EA%B5%AC/%EC%98%A4%EC%A0%95%EB%8F%99/,daejeon/대덕구/오정동/index.html,2026-08-18,20260818-add30-daejeon
+daejeon,대전,대덕구,대화동,locality,locality,published,/대덕구/대화동/,https://daejeon.sabong.co.kr/%EB%8C%80%EB%8D%95%EA%B5%AC/%EB%8C%80%ED%99%94%EB%8F%99/,daejeon/대덕구/대화동/index.html,2026-08-18,20260818-add30-daejeon
+daejeon,대전,대덕구,읍내동,locality,locality,published,/대덕구/읍내동/,https://daejeon.sabong.co.kr/%EB%8C%80%EB%8D%95%EA%B5%AC/%EC%9D%8D%EB%82%B4%EB%8F%99/,daejeon/대덕구/읍내동/index.html,2026-08-18,20260818-add30-daejeon
+incheon,인천,계양구,효성동,locality,locality,published,/계양구/효성동/,https://incheon.sabong.co.kr/%EA%B3%84%EC%96%91%EA%B5%AC/%ED%9A%A8%EC%84%B1%EB%8F%99/,incheon/계양구/효성동/index.html,2026-08-18,20260818-add30-incheon
+incheon,인천,계양구,계산동,locality,locality,published,/계양구/계산동/,https://incheon.sabong.co.kr/%EA%B3%84%EC%96%91%EA%B5%AC/%EA%B3%84%EC%82%B0%EB%8F%99/,incheon/계양구/계산동/index.html,2026-08-18,20260818-add30-incheon
+incheon,인천,계양구,작전동,locality,locality,published,/계양구/작전동/,https://incheon.sabong.co.kr/%EA%B3%84%EC%96%91%EA%B5%AC/%EC%9E%91%EC%A0%84%EB%8F%99/,incheon/계양구/작전동/index.html,2026-08-18,20260818-add30-incheon
+gwangju,광주,광산구,신가동,locality,locality,published,/광산구/신가동/,https://gwangju.sabong.co.kr/%EA%B4%91%EC%82%B0%EA%B5%AC/%EC%8B%A0%EA%B0%80%EB%8F%99/,gwangju/광산구/신가동/index.html,2026-08-18,20260818-add30-gwangju
+gwangju,광주,광산구,운남동,locality,locality,published,/광산구/운남동/,https://gwangju.sabong.co.kr/%EA%B4%91%EC%82%B0%EA%B5%AC/%EC%9A%B4%EB%82%A8%EB%8F%99/,gwangju/광산구/운남동/index.html,2026-08-18,20260818-add30-gwangju
+gwangju,광주,광산구,산월동,locality,locality,published,/광산구/산월동/,https://gwangju.sabong.co.kr/%EA%B4%91%EC%82%B0%EA%B5%AC/%EC%82%B0%EC%9B%94%EB%8F%99/,gwangju/광산구/산월동/index.html,2026-08-18,20260818-add30-gwangju
+ulsan,울산,중구,성안동,locality,locality,published,/중구/성안동/,https://ulsan.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EC%84%B1%EC%95%88%EB%8F%99/,ulsan/중구/성안동/index.html,2026-08-18,20260818-add30-ulsan
+ulsan,울산,중구,교동,locality,locality,published,/중구/교동/,https://ulsan.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EA%B5%90%EB%8F%99/,ulsan/중구/교동/index.html,2026-08-18,20260818-add30-ulsan
+ulsan,울산,중구,유곡동,locality,locality,published,/중구/유곡동/,https://ulsan.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EC%9C%A0%EA%B3%A1%EB%8F%99/,ulsan/중구/유곡동/index.html,2026-08-18,20260818-add30-ulsan
+suwon,수원,팔달구,북수동,locality,locality,published,/팔달구/북수동/,https://suwon.sabong.co.kr/%ED%8C%94%EB%8B%AC%EA%B5%AC/%EB%B6%81%EC%88%98%EB%8F%99/,suwon/팔달구/북수동/index.html,2026-08-18,20260818-add30-suwon
+suwon,수원,팔달구,신풍동,locality,locality,published,/팔달구/신풍동/,https://suwon.sabong.co.kr/%ED%8C%94%EB%8B%AC%EA%B5%AC/%EC%8B%A0%ED%92%8D%EB%8F%99/,suwon/팔달구/신풍동/index.html,2026-08-18,20260818-add30-suwon
+suwon,수원,팔달구,장안동,locality,locality,published,/팔달구/장안동/,https://suwon.sabong.co.kr/%ED%8C%94%EB%8B%AC%EA%B5%AC/%EC%9E%A5%EC%95%88%EB%8F%99/,suwon/팔달구/장안동/index.html,2026-08-18,20260818-add30-suwon
+yongin,용인,기흥구,상하동,locality,locality,published,/기흥구/상하동/,https://yongin.sabong.co.kr/%EA%B8%B0%ED%9D%A5%EA%B5%AC/%EC%83%81%ED%95%98%EB%8F%99/,yongin/기흥구/상하동/index.html,2026-08-18,20260818-add30-yongin
+yongin,용인,기흥구,지곡동,locality,locality,published,/기흥구/지곡동/,https://yongin.sabong.co.kr/%EA%B8%B0%ED%9D%A5%EA%B5%AC/%EC%A7%80%EA%B3%A1%EB%8F%99/,yongin/기흥구/지곡동/index.html,2026-08-18,20260818-add30-yongin
+yongin,용인,기흥구,보라동,locality,locality,published,/기흥구/보라동/,https://yongin.sabong.co.kr/%EA%B8%B0%ED%9D%A5%EA%B5%AC/%EB%B3%B4%EB%9D%BC%EB%8F%99/,yongin/기흥구/보라동/index.html,2026-08-18,20260818-add30-yongin
+goyang,고양,덕양구,대자동,locality,locality,published,/덕양구/대자동/,https://goyang.sabong.co.kr/%EB%8D%95%EC%96%91%EA%B5%AC/%EB%8C%80%EC%9E%90%EB%8F%99/,goyang/덕양구/대자동/index.html,2026-08-18,20260818-add30-goyang
+goyang,고양,덕양구,선유동,locality,locality,published,/덕양구/선유동/,https://goyang.sabong.co.kr/%EB%8D%95%EC%96%91%EA%B5%AC/%EC%84%A0%EC%9C%A0%EB%8F%99/,goyang/덕양구/선유동/index.html,2026-08-18,20260818-add30-goyang
+goyang,고양,덕양구,신평동,locality,locality,published,/덕양구/신평동/,https://goyang.sabong.co.kr/%EB%8D%95%EC%96%91%EA%B5%AC/%EC%8B%A0%ED%8F%89%EB%8F%99/,goyang/덕양구/신평동/index.html,2026-08-18,20260818-add30-goyang
