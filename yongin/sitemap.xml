@@ -258,4 +258,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://yongin.sabong.co.kr/%EC%B2%98%EC%9D%B8%EA%B5%AC/%EB%91%94%EC%A0%84%EB%A6%AC/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yongin.sabong.co.kr/%EC%B2%98%EC%9D%B8%EA%B5%AC/%EC%A0%84%EB%8C%80%EB%A6%AC/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yongin.sabong.co.kr/%EC%B2%98%EC%9D%B8%EA%B5%AC/%EC%99%95%EC%82%B0%EB%A6%AC/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yongin.sabong.co.kr/%EC%B2%98%EC%9D%B8%EA%B5%AC/%EC%B2%9C%EB%A6%AC/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yongin.sabong.co.kr/%EC%B2%98%EC%9D%B8%EA%B5%AC/%EC%86%A1%EC%A0%84%EB%A6%AC/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

@@ -270,4 +270,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://gwangju.sabong.co.kr/%EA%B4%91%EC%82%B0%EA%B5%AC/%EC%9B%94%EA%B3%A1%EB%8F%99/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gwangju.sabong.co.kr/%EA%B4%91%EC%82%B0%EA%B5%AC/%EC%86%8C%EC%B4%8C%EB%8F%99/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gwangju.sabong.co.kr/%EA%B4%91%EC%82%B0%EA%B5%AC/%EC%86%A1%EC%A0%95%EB%8F%99/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gwangju.sabong.co.kr/%EA%B4%91%EC%82%B0%EA%B5%AC/%EB%8F%84%EC%82%B0%EB%8F%99/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gwangju.sabong.co.kr/%EA%B4%91%EC%82%B0%EA%B5%AC/%EC%82%B0%EC%A0%95%EB%8F%99/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
