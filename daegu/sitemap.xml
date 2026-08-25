@@ -480,4 +480,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://daegu.sabong.co.kr/%EB%B6%81%EA%B5%AC/%EA%B3%A0%EC%84%B1%EB%8F%99/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daegu.sabong.co.kr/%EB%B6%81%EA%B5%AC/%EC%B9%A0%EC%84%B1%EB%8F%99/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daegu.sabong.co.kr/%EB%B6%81%EA%B5%AC/%EA%B2%80%EB%8B%A8%EB%8F%99/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daegu.sabong.co.kr/%EB%B6%81%EA%B5%AC/%EB%8F%99%EB%B3%80%EB%8F%99/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://daegu.sabong.co.kr/%EB%B6%81%EA%B5%AC/%EC%84%9C%EB%B3%80%EB%8F%99/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
