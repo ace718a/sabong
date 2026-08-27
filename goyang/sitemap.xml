@@ -438,4 +438,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://goyang.sabong.co.kr/%EC%9D%BC%EC%82%B0%EC%84%9C%EA%B5%AC/%EC%A3%BC%EC%97%BD%EC%97%AD/</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://goyang.sabong.co.kr/%EC%9D%BC%EC%82%B0%EB%8F%99%EA%B5%AC/%EC%A0%95%EB%B0%9C%EC%82%B0%EC%97%AD/</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://goyang.sabong.co.kr/%EC%9D%BC%EC%82%B0%EB%8F%99%EA%B5%AC/%EB%A7%88%EB%91%90%EC%97%AD/</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://goyang.sabong.co.kr/%EB%8D%95%EC%96%91%EA%B5%AC/%EC%82%BC%EC%86%A1%EC%97%AD/</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://goyang.sabong.co.kr/%EB%8D%95%EC%96%91%EA%B5%AC/%EC%9B%90%ED%9D%A5%EC%97%AD/</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
