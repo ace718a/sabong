@@ -1194,4 +1194,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://seoul.sabong.co.kr/%EC%9A%A9%EC%82%B0%EA%B5%AC/%EA%B0%88%EC%9B%94%EB%8F%99/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seoul.sabong.co.kr/%EC%9A%A9%EC%82%B0%EA%B5%AC/%EB%8F%99%EC%9E%90%EB%8F%99/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seoul.sabong.co.kr/%EC%9A%A9%EC%82%B0%EA%B5%AC/%EC%B2%AD%ED%8C%8C%EB%8F%991%EA%B0%80/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seoul.sabong.co.kr/%EC%9A%A9%EC%82%B0%EA%B5%AC/%EC%B2%AD%ED%8C%8C%EB%8F%992%EA%B0%80/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seoul.sabong.co.kr/%EC%9A%A9%EC%82%B0%EA%B5%AC/%EC%B2%AD%ED%8C%8C%EB%8F%993%EA%B0%80/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
