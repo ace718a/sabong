@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 from __future__ import annotations
 import csv, json, re, sys, zipfile
 from pathlib import Path
@@ -9,7 +9,7 @@ from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent
 MAP = ROOT / "maps" / "region_map.csv"
-CITIES = {"seoul":"서울","busan":"부산","daegu":"대구","daejeon":"대전","incheon":"인천","gwangju":"광주","ulsan":"울산","suwon":"수원","yongin":"용인","goyang":"고양"}
+CITIES: dict[str, str] = {}
 ESCAPE_RE = re.compile(r"#U[0-9A-Fa-f]{4}|%u[0-9A-Fa-f]{4}|\\\\u[0-9A-Fa-f]{4}")
 FORBIDDEN_SPLIT_LOCALITIES = {"역삼1동","역삼2동","대저일동","대저이동","판암1동","판암2동","가양1동","가양2동","영종1동","영종2동","영종3동","운서1동","운서2동"}
 ALLOWED_HOSTS = {"schema.org", "cleanm.kr", "co10.kr", "www.sitemaps.org"}
@@ -46,6 +46,10 @@ if not MAP.exists():
 else:
     with MAP.open(encoding="utf-8-sig", newline="") as f:
         rows=list(csv.DictReader(f))
+CITIES = {r["city_key"]: r["city_name"] for r in rows if r.get("city_key")}
+for city_dir in ROOT.iterdir():
+    if city_dir.is_dir() and (city_dir / "index.html").exists() and (city_dir / "robots.txt").exists():
+        CITIES.setdefault(city_dir.name, city_dir.name)
 row_by_source={r["source_file"]:r for r in rows}
 row_by_city_path={(r["city_key"],unquote(urlparse(r["canonical_url"]).path)):r for r in rows}
 
@@ -153,7 +157,7 @@ for p in actual:
     intro=s.select_one("section.region-intro")
     if intro and intro.find_all("p",recursive=False): err(f"region-intro 문단 박스 이탈: {rel}")
     box=s.select_one(".region-intro-box")
-    if p.parent.name not in CITIES:
+    if p.parent.name not in CITIES or strengthened_text_rule:
         if not box: err(f"region-intro-box 없음: {rel}")
         else:
             paragraphs=box.find_all("p",recursive=False)
