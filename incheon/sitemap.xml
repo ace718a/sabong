@@ -1230,4 +1230,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://incheon.sabong.co.kr/%EA%B0%95%ED%99%94%EA%B5%B0/%EB%8A%A5%EB%82%B4%EB%A6%AC/</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://incheon.sabong.co.kr/%EA%B0%95%ED%99%94%EA%B5%B0/%EA%B1%B4%ED%8F%89%EB%A6%AC/</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://incheon.sabong.co.kr/%EA%B0%95%ED%99%94%EA%B5%B0/%ED%99%A9%EC%B2%AD%EB%A6%AC/</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://incheon.sabong.co.kr/%EA%B0%95%ED%99%94%EA%B5%B0/%EA%B5%90%EC%82%B0%EB%A6%AC/</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://incheon.sabong.co.kr/%EA%B0%95%ED%99%94%EA%B5%B0/%EB%B4%89%EC%B2%9C%EB%A6%AC/</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
