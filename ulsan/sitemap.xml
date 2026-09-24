@@ -1230,4 +1230,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://ulsan.sabong.co.kr/%EB%82%A8%EA%B5%AC/%EC%9A%B8%EC%82%B0%EC%98%A5%EB%8F%99%EB%A1%AF%EB%8D%B0%EC%9D%B8%EB%B2%A4%EC%8A%A4%EB%A1%9C%EC%96%84/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ulsan.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EC%9A%B8%EC%82%B0%EC%84%BC%ED%8A%B8%EB%9F%B4%EC%9E%90%EC%9D%B4/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ulsan.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EB%B3%B5%EC%82%B0%EC%95%84%EC%9D%B4%ED%8C%8C%ED%81%AC/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ulsan.sabong.co.kr/%EB%B6%81%EA%B5%AC/%EC%9A%B8%EC%82%B0%EC%86%A1%EC%A0%95%EB%B0%98%EB%8F%84%EC%9C%A0%EB%B3%B4%EB%9D%BC%EC%95%84%EC%9D%B4%EB%B9%84%ED%8C%8C%ED%81%AC/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ulsan.sabong.co.kr/%EC%A4%91%EA%B5%AC/%EC%9A%B8%EC%82%B0%EB%B2%88%EC%98%81%EB%A1%9C%EC%84%BC%ED%8A%B8%EB%A6%AC%EC%A7%80/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

@@ -234,4 +234,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://seongnam.sabong.co.kr/%EB%B6%84%EB%8B%B9%EA%B5%AC/%ED%8C%90%EA%B5%90%EC%95%8C%ED%8C%8C%EB%A6%AC%EC%9B%801%EB%8B%A8%EC%A7%80/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seongnam.sabong.co.kr/%EB%B6%84%EB%8B%B9%EA%B5%AC/%ED%8C%90%EA%B5%90%EC%9B%90%EB%A7%88%EC%9D%845%EB%8B%A8%EC%A7%80%ED%91%B8%EB%A5%B4%EC%A7%80%EC%98%A4/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seongnam.sabong.co.kr/%EB%B6%84%EB%8B%B9%EA%B5%AC/%EB%B6%84%EB%8B%B9%ED%8C%8C%ED%81%AC%EB%B7%B0/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seongnam.sabong.co.kr/%EC%88%98%EC%A0%95%EA%B5%AC/%EC%82%B0%EC%84%B1%EC%97%AD%EC%9E%90%EC%9D%B4%ED%91%B8%EB%A5%B4%EC%A7%80%EC%98%A4/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seongnam.sabong.co.kr/%EC%88%98%EC%A0%95%EA%B5%AC/%EC%9C%84%EB%A1%80%EC%84%BC%ED%8A%B8%EB%9F%B4%EC%9E%90%EC%9D%B4/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
