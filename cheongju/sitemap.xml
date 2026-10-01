@@ -270,4 +270,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://cheongju.sabong.co.kr/%ED%9D%A5%EB%8D%95%EA%B5%AC/%EA%B0%80%EA%B2%BD%EC%95%84%EC%9D%B4%ED%8C%8C%ED%81%AC4%EB%8B%A8%EC%A7%80/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cheongju.sabong.co.kr/%EC%83%81%EB%8B%B9%EA%B5%AC/%EC%B2%AD%EC%A3%BC%EC%84%BC%ED%8A%B8%EB%9F%B4%EC%9E%90%EC%9D%B4/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cheongju.sabong.co.kr/%EC%B2%AD%EC%9B%90%EA%B5%AC/%EC%98%A4%EC%B0%BD%ED%95%9C%EC%8B%A0%EB%8D%94%ED%9C%B4%EC%84%BC%ED%8A%B8%EB%9F%B4%ED%8C%8C%ED%81%AC/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cheongju.sabong.co.kr/%EC%83%81%EB%8B%B9%EA%B5%AC/%EB%8F%99%EB%82%A8%EC%A7%80%EA%B5%AC%EB%8C%80%EC%84%B1%EB%B2%A0%EB%A5%B4%ED%9E%90/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cheongju.sabong.co.kr/%ED%9D%A5%EB%8D%95%EA%B5%AC/%EB%B3%B5%EB%8C%80%EB%91%90%EC%A7%84%ED%95%98%ED%8A%B8%EB%A6%AC%EC%9B%80/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
