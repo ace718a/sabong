@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://changwon.sabong.co.kr/sitemap.xml

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pyeongtaek.sabong.co.kr/sitemap.xml
