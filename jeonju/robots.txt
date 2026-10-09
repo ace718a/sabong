@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jeonju.sabong.co.kr/sitemap.xml
